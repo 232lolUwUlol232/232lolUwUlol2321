@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор на JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <h1>Калькулятор на JavaScript</h1>
+        <input type="number" id="add1" oninput="validateInput(this)"> + 
+        <input type="number" id="add2" oninput="validateInput(this)"> = 
+        <span id="addResult">0</span>
+        <button onclick="calculate('add')">Посчитать</button>
+        <br><br>
+        <input type="number" id="sub1" oninput="validateInput(this)"> - 
+        <input type="number" id="sub2" oninput="validateInput(this)"> = 
+        <span id="subResult">0</span>
+        <button onclick="calculate('sub')">Посчитать</button>
+        <br><br>
+        <input type="number" id="mul1" oninput="validateInput(this)"> * 
+        <input type="number" id="mul2" oninput="validateInput(this)"> = 
+        <span id="mulResult">0</span>
+        <button onclick="calculate('mul')">Посчитать</button>
+        <br><br>
+        <input type="number" id="div1" oninput="validateInput(this)"> / 
+        <input type="number" id="div2" oninput="validateInput(this)"> = 
+        <span id="divResult">0</span>
+        <button onclick="calculate('div')">Посчитать</button>
+    </div>
+
+    <script>
+        function validateInput(input) {
+            input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');
+        }
+
+        function calculate(operation) {
+            let num1, num2, result;
+
+            switch(operation) {
+                case 'add':
+                    num1 = parseFloat(document.getElementById('add1').value);
+                    num2 = parseFloat(document.getElementById('add2').value);
+                    result = num1 + num2;
+                    document.getElementById('addResult').innerText = result;
+                    break;
+
+                case 'sub':
+                    num1 = parseFloat(document.getElementById('sub1').value);
+                    num2 = parseFloat(document.getElementById('sub2').value);
+                    result = num1 - num2;
+                    document.getElementById('subResult').innerText = result;
+                    break;
+
+                case 'mul':
+                    num1 = parseFloat(document.getElementById('mul1').value);
+                    num2 = parseFloat(document.getElementById('mul2').value);
+                    result = num1 * num2;
+                    document.getElementById('mulResult').innerText = result;
+                    break;
+
+                case 'div':
+                    num1 = parseFloat(document.getElementById('div1').value);
+                    num2 = parseFloat(document.getElementById('div2').value);
+                    if (num2 === 0) {
+                        result = 'Ошибка';
+                    } else {
+                        result = num1 / num2;
+                    }
+                    document.getElementById('divResult').innerText = result;
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
